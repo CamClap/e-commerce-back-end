@@ -1,0 +1,29 @@
+{
+  "name": "e-commerce-back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "async": "^3.2.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "node": "^16.1.0",
+    "python": "0.0.4",
+    "sql": "^0.78.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CamClap/e-commerce-back-end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CamClap/e-commerce-back-end/issues"
+  },
+  "homepage": "https://github.com/CamClap/e-commerce-back-end#readme"
+}
