@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 const article = require('./routes/article.route');
+// const livre = require('./routes/livre.route');
 const commande = require('./routes/commande.route');
 const auteur = require('./routes/auteur.route');
 const genre = require('./routes/genre.route');
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use('/article', article);
+// app.use('/livre', livre);
 app.use('/commande', commande);
 app.use('/auteur', auteur);
 app.use('/genre', genre);

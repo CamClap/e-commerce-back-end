@@ -1,8 +1,8 @@
-const article = require("../models/article");
-const articleDao = require('../dao/article.dao');
+const livre = require("../models/livre");
+const livreDao = require('../dao/livre.dao');
 
 exports.getAll = (req, res, next) => {
-    articleDao.getAll()
+    livreDao.getAll()
         .then(result => res.status(200).json(result))
         .catch(err => {
             return res.status(500).json({
@@ -12,12 +12,12 @@ exports.getAll = (req, res, next) => {
 }
 exports.getOneByRef = (req, res, next) => {
     const ref = parseInt(req.params.ref);
-    articleDao.getOneByRef(ref)
+    livreDao.getOneByRef(ref)
         .then(result => res.status(200).json(result[0]))
         .catch(err => {
             if (!err) {
                 return res.status(404).json({
-                    error: `Aucun article avec la référence ${ref}`
+                    error: `Aucun livre avec la référence ${ref}`
                 });
             }
             return res.status(500).json({
@@ -25,47 +25,53 @@ exports.getOneByRef = (req, res, next) => {
             });
         });
 }
-
-exports.add = async (req, res, next) => {
-    const a = new article.Article(
-        req.body.titre,
-        req.body.resume,
-        req.body.prix,
-        req.body.stock,
-        req.body.ISBN,
-        req.body.image,
-        req.body.format
-    );
-    let result = await articleDao.add(a).catch(err => {
-        return res.status(500).json({
-            error: `problème d'insertion dans article : ${err}`
-        });
-    });
-    a.ref = result.insertId;
-    await articleDao.addLivreArticle(a).catch(err => {
-        return res.status(500).json({
-            error: `problème d'insertion dans livre : ${err}`
-        });
-    });
-
-    return res.status(201).json(a);
-}
-exports.edit = (req, res, next) => {
+exports.getPrice = (req, res, next) => {
     const ref = parseInt(req.params.ref);
-    const a = new article.Article(
+    livreDao.getPrice(ref)
+        .then(result => res.status(200).json(result[0]))
+        .catch(err => {
+            if (!err) {
+                return res.status(404).json({
+                    error: `Aucun livre avec la référence ${ref}`
+                });
+            }
+            return res.status(500).json({
+                error: `problème de récupération de données : ${err}`
+            });
+        });
+}
+exports.add = (req, res, next) => {
+    const l = new livre.Livre(
         req.body.nom,
         req.body.prenom
     );
-    articleDao.edit(ref, a)
+    livreDao.add(l)
+        .then(result => {
+            l.ref = result.insertId;
+            return res.status(201).json(l);
+        })
+        .catch(err => {
+            return res.status(500).json({
+                error: `problème d'insertion : ${err}`
+            });
+        });
+}
+exports.edit = (req, res, next) => {
+    const ref = parseInt(req.params.ref);
+    const l = new livre.Livre(
+        req.body.nom,
+        req.body.prenom
+    );
+    livreDao.edit(ref, l)
         .then(result => {
             return res.status(200).json({
-                message: `article avec la référence ${ref} modifiée avec succès`
+                message: `livre avec la référence ${ref} modifiée avec succès`
             });
         })
         .catch(err => {
             if (!err) {
                 return res.status(404).json({
-                    error: `Aucun article avec la référence ${ref}`
+                    error: `Aucun livre avec la référence ${ref}`
                 });
             }
             return res.status(500).json({
@@ -75,16 +81,16 @@ exports.edit = (req, res, next) => {
 }
 exports.delete = (req, res, next) => {
     const ref = parseInt(req.params.ref);
-    articleDao.delete(ref)
+    livreDao.delete(ref)
         .then(result => {
             return res.status(200).json({
-                message: `article avec la référence ${ref} supprimée avec succès`
+                message: `livre avec la référence ${ref} supprimée avec succès`
             });
         })
         .catch(err => {
             if (!err) {
                 return res.status(404).json({
-                    error: `Aucun article avec la référence ${ref}`
+                    error: `Aucun livre avec la référence ${ref}`
                 });
             }
             return res.status(500).json({
