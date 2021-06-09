@@ -11,7 +11,7 @@ exports.getAll = () => {
 };
 exports.getOneByRef = (ref) => {
     return new Promise((resolve, reject) => {
-        const req = connection.query("SELECT * FROM article, livre WHERE ref  = ? AND article.ref = refArticle ", ref, (err, result) => {
+        const req = connection.query("SELECT * FROM article, livre WHERE ref = ? AND article.ref = refArticle ", ref, (err, result) => {
             console.log(req.sql)
             err || result.length == 0 ? reject(err) : resolve(result);
         });

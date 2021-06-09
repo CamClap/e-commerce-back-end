@@ -11,7 +11,7 @@ exports.getAll = (req, res, next) => {
         });
 }
 exports.getOneByRef = (req, res, next) => {
-    const ref = parseInt(req.params.ref);
+    const ref = parseInt(req.params.id);
     articleDao.getOneByRef(ref)
         .then(result => res.status(200).json(result[0]))
         .catch(err => {
