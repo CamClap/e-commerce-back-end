@@ -7,8 +7,8 @@ const commande = require('./routes/commande.route');
 const auteur = require('./routes/auteur.route');
 const genre = require('./routes/genre.route');
 const editeur = require('./routes/editeur.route');
-const utilisateur = require('./routes/utilisateur.route');
 const connexion = require('./routes/connexion.route');
+const utilisateur = require('./routes/utilisateur.route');
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -24,9 +24,9 @@ app.use('/article', article);
 app.use('/commande', commande);
 app.use('/auteur', auteur);
 app.use('/genre', genre);
-app.use('/utilisateur', utilisateur);
 app.use('/editeur', editeur);
 app.use('/connexion', connexion);
+app.use('/utilisateur', utilisateur);
 app.all('/*', (req, res) => {
     res
         .status(404)

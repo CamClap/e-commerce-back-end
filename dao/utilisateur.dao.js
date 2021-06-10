@@ -2,7 +2,7 @@ const connection = require('../database.js');
 
 exports.add = (p) => {
     return new Promise((resolve, reject) => {
-        const req = connection.query("INSERT INTO utilisateur SET nom = ?, prenom = ?, email =?, mdp = ?, adresse = ?, adresseLivraison = ?", [p.nom, p.prenom, p.email, p.mdp, p.adresse, p.adresseLivraison], (err, result) => {
+        const req = connection.query("INSERT INTO utilisateur SET nom = ?, prenom = ?, email =?, mdp = ?, adresse = ?, adresseLivraison = ?", [p.nom, p.prenom, p.email, p.mdp, p.adresse.id, p.adresseLivraison.id], (err, result) => {
                 console.log(req.sql)
                 err ? reject(err) : resolve(result);
             });
