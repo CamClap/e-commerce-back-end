@@ -11,16 +11,6 @@ exports.add = async (req, res, next) => {
     req.body.mdp,
     req.body.adresse,
     req.body.adresseLivraison
-    // req.body.adresse.num,
-    // req.body.adresse.rue,
-    // req.body.adresse.cp,
-    // req.body.adresse.ville,
-    // req.body.adresse.complement,
-    // req.body.adresseLivraison.num,
-    // req.body.adresseLivraison.rue,
-    // req.body.adresseLivraison.cp,
-    // req.body.adresseLivraison.ville,
-    // req.body.adresseLivraison.complement
   );
 
   const result1 = await adresseDao.add(u.adresse).catch((err) => {

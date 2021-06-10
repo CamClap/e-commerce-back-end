@@ -6,9 +6,11 @@ exports.connexion = (req, res, next) => {
         req.body.email,
         req.body.mdp
     );
-    utilisateurDao.getOneByUsernameAndPassword(p.email, p.mdp)
+    
+    utilisateurDao.getOneByEmailAndPassword(u.nom, u.prenom)
         .then(result => {
-                return res.status(200).json(result[0]);
+            console.log(result)
+            return res.status(200).json(result[0]);
         })
         .catch(err => {
             return res.status(500).json({

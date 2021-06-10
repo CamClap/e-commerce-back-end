@@ -12,7 +12,7 @@ exports.add = (p) => {
 
 exports.getOneByEmailAndPassword = (email, mdp) => {
     return new Promise((resolve, reject) => {
-        const req = connection.query("SELECT * FROM utilisateur WHERE email  = ? AND mdp = ? ", [email, mdp], (err, result) => {
+        const req = connection.query("SELECT * FROM utilisateur WHERE email = ? AND mdp = ? ", [email, mdp], (err, result) => {
             console.log(req.sql)
             err  ? reject(err) : resolve(result);
         });
