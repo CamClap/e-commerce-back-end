@@ -1,9 +1,10 @@
 exports.Adresse = class {
-    constructor(ref, titre, resume, prix, stock) {
-        this.ref = ref;
-        this.titre = titre;
-        this.resume = resume;
-        this.prix = prix;
-        this.stock = stock;
+    constructor(id, num, rue, cp, ville, complement) {
+        this.id = id;
+        this.num = num;
+        this.rue = rue;
+        this.cp = cp;
+        this.ville = ville;
+        this.complement = complement;
     }
 }
