@@ -7,6 +7,7 @@ const commande = require('./routes/commande.route');
 const auteur = require('./routes/auteur.route');
 const genre = require('./routes/genre.route');
 const editeur = require('./routes/editeur.route');
+const connexion = require('./routes/connexion.route');
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -23,6 +24,7 @@ app.use('/commande', commande);
 app.use('/auteur', auteur);
 app.use('/genre', genre);
 app.use('/editeur', editeur);
+app.use('/connexion', connexion);
 app.all('/*', (req, res) => {
     res
         .status(404)
