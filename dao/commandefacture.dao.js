@@ -17,10 +17,10 @@ exports.getOneById = (id) => {
     });
 };
 
-exports.add = (c) => {
+exports.add = (cf) => {
     return new Promise((resolve, reject) => {
-        const req = connection.query("INSERT INTO commandeFacture SET id = ?, dateCommandeFacture = ?, total = ?, idUtilisateur = ?", 
-        [c.id, c.dateCommandeFacture, c.total, c.idUtilisateur], (err, result) => {
+        const req = connection.query("INSERT INTO commandeFacture (numCommande, numFacture) VALUES (?, ?)", 
+        [cf.numCommande, cf.numFacture], (err, result) => {
             console.log(req.sql)
             err ? reject(err) : resolve(result);
         });

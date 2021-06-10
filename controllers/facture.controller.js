@@ -26,13 +26,13 @@ exports.getOneByNum = (req, res, next) => {
         });
 }
 exports.add = (req, res, next) => {
-    const a = new facture.Facture(
-        req.body.date
+    const f = new facture.Facture(
+        new Date().toJSON().substr(0, 10)
     );
-    factureDao.add(a)
+    factureDao.add(f)
         .then(result => {
-            a.num = result.insertnum;
-            return res.status(201).json(a);
+            f.num = result.insertId;
+            return res.status(201).json(f);
         })
         .catch(err => {
             return res.status(500).json({

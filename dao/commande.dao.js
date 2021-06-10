@@ -18,10 +18,9 @@ exports.getOneByNum = (num) => {
 };
 
 exports.add = (c) => {
-    // VERIFIER SI ID UTILISATEUR EST CORRECT
     return new Promise((resolve, reject) => {
-        const req = connection.query("INSERT INTO commande SET num = ?, dateCommande = ?, total = ?, idUtilisateur = ?", 
-        [c.num, c.dateCommande, c.total, c.idUtilisateur], (err, result) => {
+        const req = connection.query("INSERT INTO commande (dateCommande, total, idUtilisateur) VALUES (?, ?, ?)", 
+        [c.dateCommande, c.total, c.idUtilisateur], (err, result) => {
             console.log(req.sql)
             err ? reject(err) : resolve(result);
         });

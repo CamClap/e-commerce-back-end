@@ -40,7 +40,17 @@ exports.getOneByRef = (ref) => {
 // };
 exports.edit = (ref, a) => {
     return new Promise((resolve, reject) => {
-        const req = connection.query("UPDATE article SET ? WHERE ref = ?", [a, ref], (err, result) => {
+        const req = connection.query("UPDATE article SET titre = ?, resume = ?, prix = ?, stock = ?, " +
+        "ISBN = ?, imageLivre = ?, formatLivre ?, nomEditeur = ?, refArticle = ? WHERE ref = ?", 
+        [a.titre, a.resume, a.prix, a.stock, a.ISBN, a.imageLivre, a.formatLivre, a.nomEditeur, ref, ref], (err, result) => {
+            console.log(req.sql)
+            err || result.affectedRows == 0 ? reject(err) : resolve(result);
+        });
+    });
+};
+exports.retireStock = (ref, quantiteVendue) => {
+    return new Promise((resolve, reject) => {
+        const req = connection.query("UPDATE article SET stock = stock - ? WHERE ref = ?", [quantiteVendue, ref], (err, result) => {
             console.log(req.sql)
             err || result.affectedRows == 0 ? reject(err) : resolve(result);
         });

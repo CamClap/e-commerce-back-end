@@ -50,11 +50,19 @@ exports.add = async (req, res, next) => {
 
     return res.status(201).json(a);
 }
+
+// ne fonctionne pas, à corriger
 exports.edit = (req, res, next) => {
-    const ref = parseInt(req.params.ref);
+    const ref = parseInt(req.params.id);
     const a = new article.Article(
-        req.body.nom,
-        req.body.prenom
+        req.body.titre,
+        req.body.resume,
+        req.body.prix,
+        req.body.stock,
+        req.body.ISBN,
+        req.body.imageLivre,
+        req.body.formatLivre,
+        req.body.nomEditeur
     );
     articleDao.edit(ref, a)
         .then(result => {
@@ -74,7 +82,7 @@ exports.edit = (req, res, next) => {
         });
 }
 exports.delete = (req, res, next) => {
-    const ref = parseInt(req.params.ref);
+    const ref = parseInt(req.params.id);
     articleDao.delete(ref)
         .then(result => {
             return res.status(200).json({
@@ -89,6 +97,28 @@ exports.delete = (req, res, next) => {
             }
             return res.status(500).json({
                 error: `problème de suppression : ${err}`
+            });
+        });
+}
+
+exports.retireStock = (req, res, next) => {
+    const ref = parseInt(req.params.id);
+    let quantiteVendue = req.body.quantiteVendue;
+    console.log(quantiteVendue);
+    articleDao.retireStock(ref, quantiteVendue)
+        .then(result => {
+            return res.status(200).json({
+                message: `article avec la référence ${ref} modifiée avec succès`
+            });
+        })
+        .catch(err => {
+            if (!err) {
+                return res.status(404).json({
+                    error: `Aucun article avec la référence ${ref}`
+                });
+            }
+            return res.status(500).json({
+                error: `problème de mise à jour : ${err}`
             });
         });
 }

@@ -26,14 +26,14 @@ exports.getOneById = (req, res, next) => {
         });
 }
 exports.add = (req, res, next) => {
-    const a = new commandeFacture.CommandeFacture(
+    const cf = new commandeFacture.CommandeFacture(
         req.body.numCommande,
         req.body.commandeFumFacture
     );
-    commandeFactureDao.add(a)
+    commandeFactureDao.add(cf)
         .then(result => {
-            a.id = result.insertid;
-            return res.status(201).json(a);
+            cf.id = result.insertId;
+            return res.status(201).json(cf);
         })
         .catch(err => {
             return res.status(500).json({

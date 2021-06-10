@@ -19,8 +19,8 @@ exports.getOneById = (id) => {
 
 exports.add = (lc) => {
     return new Promise((resolve, reject) => {
-        const req = connection.query("INSERT INTO lignecommande SET id = ?, quantiteCommande = ?, refArticle = ?, numCommande = ?", 
-        [lc.id, lc.quantiteCommande, lc.refArticle, lc.numCommande], (err, result) => {
+        const req = connection.query("INSERT INTO lignecommande (quantiteCommande, refArticle, numCommande) VALUES (?, ?, ?)", 
+        [lc.quantiteCommande, lc.refArticle, lc.numCommande], (err, result) => {
             console.log(req.sql)
             err ? reject(err) : resolve(result);
         });
