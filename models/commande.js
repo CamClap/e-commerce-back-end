@@ -1,7 +1,7 @@
 exports.Commande = class {
-    constructor(dateCommande, total, utilisateur) {
+    constructor(dateCommande, total, idUtilisateur) {
         this.dateCommande = dateCommande;
         this.total = total;
-        this.utilisateur = utilisateur;
+        this.idUtilisateur = idUtilisateur;
     }
 }
