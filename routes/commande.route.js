@@ -7,5 +7,6 @@ router.get('/:id', commandeController.getOneByNum);
 router.post('/', commandeController.add);
 router.put('/:id', commandeController.edit);
 router.delete('/:id', commandeController.delete);
+// router.get('/best/', commandeController.getBestSellArticles);
 
 module.exports = router;

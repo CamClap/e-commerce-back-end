@@ -9,6 +9,7 @@ const auteur = require('./routes/auteur.route');
 const genre = require('./routes/genre.route');
 const editeur = require('./routes/editeur.route');
 const connexion = require('./routes/connexion.route');
+const admin = require('./routes/admin.route');
 const utilisateur = require('./routes/utilisateur.route');
 
 app.use((req, res, next) => {
@@ -28,6 +29,7 @@ app.use('/auteur', auteur);
 app.use('/genre', genre);
 app.use('/editeur', editeur);
 app.use('/connexion', connexion);
+app.use('/admin', admin);
 app.use('/utilisateur', utilisateur);
 app.all('/*', (req, res) => {
     res
