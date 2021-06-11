@@ -3,7 +3,7 @@ const connection = require('../database.js');
 
 exports.getAll = () => {
     return new Promise((resolve, reject) => {
-        const req = connection.query("SELECT * FROM article, livre where article.ref = refArticle", (err, result) => {
+        const req = connection.query("SELECT * FROM article, livre where article.ref = refArticle AND stock > 0", (err, result) => {
             console.log(req.sql)
             err ? reject(err) : resolve(result);
         });
