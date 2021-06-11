@@ -35,7 +35,6 @@ exports.getOneByNum = (req, res, next) => {
 exports.add = async (req, res, next) => {
     const currentDate = new Date().toJSON().substr(0, 10);
     const c = new commande.Commande(
-        "",
         currentDate,
         req.body.total,
         req.body.idUtilisateur
