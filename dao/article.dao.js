@@ -3,12 +3,13 @@ const connection = require('../database.js');
 
 exports.getAll = () => {
     return new Promise((resolve, reject) => {
-        const req = connection.query("SELECT * FROM article, livre where article.ref = refArticle AND stock > 0", (err, result) => {
+        const req = connection.query("SELECT * FROM article, livre where article.ref = refArticle", (err, result) => {
             console.log(req.sql)
             err ? reject(err) : resolve(result);
         });
     });
 };
+// SELECT * FROM article, livre where article.ref = refArticle AND stock > 0
 exports.getOneByRef = (ref) => {
     return new Promise((resolve, reject) => {
         const req = connection.query("SELECT * FROM article, livre WHERE ref = ? AND article.ref = refArticle ", ref, (err, result) => {
